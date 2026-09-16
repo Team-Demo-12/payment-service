@@ -43,6 +43,7 @@ function authorize(req, res) {
 
   try {
     const record = authorizePayment(payment);
+    require('../middleware/requestContext').auditAuthorization(record);
     return res.status(201).json({
       authorizationId: record.authorizationId,
       paymentId: record.paymentId,
