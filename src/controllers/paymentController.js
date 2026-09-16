@@ -50,6 +50,7 @@ function authorize(req, res) {
       invoiceId: record.invoiceId,
       network: record.network,
       profileId: record.profileId,
+      captureMode: record.captureMode,
       authorizationCode: record.authorizationCode,
       status: record.status,
       authorizedAt: record.authorizedAt,

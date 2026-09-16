@@ -11,6 +11,7 @@ const { emitPaymentSucceeded } = require('../events/paymentEvents');
  * The network's authorisation profile is resolved first, then handed to the adapter for
  * that network. Adapters validate the profile they are given, because presenting an
  * uncertified profile to the acquirer fails downstream in a way that is hard to diagnose.
+ * The capture mode of the selected profile travels with the stored record.
  */
 function authorizePayment(payment) {
   const profile = authProfiles.forNetwork(payment.network);
