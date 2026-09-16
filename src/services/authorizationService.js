@@ -24,6 +24,7 @@ function authorizePayment(payment) {
     network: payment.network,
     profileId: result.profileId,
     captureMode: result.captureMode,
+    installmentPlan: result.installmentPlan || null,
     authorizationCode: result.authorizationCode,
     amountMinor: payment.amountMinor,
     capturedMinor: payment.capturedMinor || payment.amountMinor,
