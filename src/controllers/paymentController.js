@@ -82,4 +82,14 @@ function getAuthorization(req, res) {
   return res.json(record);
 }
 
-module.exports = { authorize, getAuthorization };
+function listNetworks(req, res) {
+  const { authProfiles } = require('../config/authProfiles');
+  return res.json({
+    networks: authProfiles.supportedNetworks().map((network) => ({
+      network,
+      profileId: authProfiles.forNetwork(network).id,
+    })),
+  });
+}
+
+module.exports = { authorize, getAuthorization, listNetworks };
