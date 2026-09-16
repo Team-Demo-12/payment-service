@@ -23,6 +23,7 @@ function authorize(payment, profile) {
     network: 'visa',
     profileId: profile.id,
     captureMode: profile.captureMode,
+    acquirerBin: profile.acquirerBin,
     authorizationCode: `VI${String(payment.amountMinor).padStart(6, '0')}`,
     approved: true,
   };

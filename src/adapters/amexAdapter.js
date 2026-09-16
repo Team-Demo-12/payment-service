@@ -27,6 +27,7 @@ function authorize(payment, profile) {
     network: 'amex',
     profileId: profile.id,
     captureMode: profile.captureMode,
+    acquirerBin: profile.acquirerBin,
     authorizationCode: `AX${String(payment.amountMinor).padStart(6, '0')}`,
     approved: true,
   };
