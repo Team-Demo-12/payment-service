@@ -26,6 +26,7 @@ function authorizePayment(payment) {
     captureMode: result.captureMode,
     authorizationCode: result.authorizationCode,
     amountMinor: payment.amountMinor,
+    capturedMinor: payment.capturedMinor || payment.amountMinor,
     currency: payment.currency,
     status: 'authorized',
   });

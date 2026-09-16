@@ -29,6 +29,7 @@ function authorize(req, res) {
     network: req.body.network,
     amountMinor: req.body.amountMinor,
     currency: req.body.currency || 'USD',
+    capturedMinor: req.body.capturedMinor || null,
     idempotencyKey: req.get('idempotency-key') || null,
   };
 
