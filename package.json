@@ -1,6 +1,6 @@
 {
   "name": "payment-service",
-  "version": "4.17.2",
+  "version": "4.17.3",
   "description": "Beaconstone Payments — selects the card-network authorisation profile and processes payment authorisation.",
   "main": "src/server.js",
   "scripts": {

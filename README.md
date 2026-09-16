@@ -61,7 +61,7 @@ npm test
 |---|---|---|
 | `PORT` | `3000` | HTTP listen port |
 | `SERVICE_NAME` | `payment-service` | Emitted on every log line |
-| `RELEASE` | `payments-<package version>` | Release identifier in logs and telemetry |
+| `RELEASE` | `payments-<package version>` | Release identifier in logs and telemetry. Set by the deployment; falls back to the package version locally. |
 | `API_KEY` | unset | When set, requires `x-api-key` |
 | `RATE_LIMIT_WINDOW_MS` | `60000` | Rate limit window |
 | `RATE_LIMIT_MAX` | `100` | Requests per window |
