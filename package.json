@@ -1,0 +1,18 @@
+{
+  "name": "payment-service",
+  "version": "4.16.0",
+  "description": "Beaconstone Payments — selects the card-network authorisation profile and processes payment authorisation.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node test/authorization-profile.amex.test.js && node test/authorization-profile.card.test.js",
+    "build": "echo 'Build OK'"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "uuid": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

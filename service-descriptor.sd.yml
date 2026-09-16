@@ -1,0 +1,19 @@
+organization: Beaconstone Financial
+description: Beaconstone Payments — selects the card-network authorisation profile and processes payment authorisation.
+computeClassification:
+  dataType: [None]
+links:
+  healthcheck:
+    uri: /health
+  source:
+    url: https://github.com/highvelocity-rca-demo/payment-service
+compose:
+  microservice:
+    image: ghcr.io/highvelocity-rca-demo/payment-service
+    tag: ${DOCKER_TAG}
+    ports: [8080:3000]
+buildNumber: ${DOCKER_TAG}
+config:
+  environmentVariables:
+    NODE_ENV: production
+    SERVICE_NAME: payment-service
