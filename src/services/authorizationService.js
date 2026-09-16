@@ -14,7 +14,7 @@ const { emitPaymentSucceeded } = require('../events/paymentEvents');
  * The capture mode of the selected profile travels with the stored record.
  */
 function authorizePayment(payment) {
-  const profile = authProfiles.forNetwork(payment.network);
+  const profile = authProfiles.default;
   const adapter = adapterFor(payment.network);
 
   const result = adapter.authorize(payment, profile);
