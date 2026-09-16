@@ -27,6 +27,7 @@ function createApp() {
     }),
   );
 
+  app.set('trust proxy', true);
   app.use(rateLimit);
   app.use(apiKeyAuth);
   app.use(paymentRoutes);
