@@ -23,6 +23,7 @@ function createApp() {
       release: config.release,
       authorizations: authorizationRepository.size(),
       byNetwork: authorizationRepository.countByNetwork(),
+      failuresByNetwork: authorizationRepository.failuresByNetwork(),
     }),
   );
 
