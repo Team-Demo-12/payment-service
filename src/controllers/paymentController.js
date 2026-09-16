@@ -32,6 +32,14 @@ function authorize(req, res) {
     idempotencyKey: req.get('idempotency-key') || null,
   };
 
+  const { authProfiles } = require('../config/authProfiles');
+  if (!Number.isInteger(payment.amountMinor) || payment.amountMinor <= 0) {
+    return res.status(422).json({ error: 'InvalidAmount', requestId: req.requestId });
+  }
+  if (!authProfiles.isSupported(payment.network)) {
+    return res.status(422).json({ error: 'UnsupportedNetwork', requestId: req.requestId });
+  }
+
   try {
     const record = authorizePayment(payment);
     return res.status(201).json({
