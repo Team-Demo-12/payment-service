@@ -56,4 +56,18 @@ function accessLog(req, res, next) {
   next();
 }
 
-module.exports = { requestId, rateLimit, apiKeyAuth, accessLog };
+function auditAuthorization(record) {
+  process.stdout.write(
+    JSON.stringify({
+      level: 'info',
+      event: 'authorization.succeeded',
+      service: config.serviceName,
+      release: config.release,
+      authorizationId: record.authorizationId,
+      network: record.network,
+      profileId: record.profileId,
+    }) + '\n',
+  );
+}
+
+module.exports = { requestId, rateLimit, apiKeyAuth, accessLog, auditAuthorization };
