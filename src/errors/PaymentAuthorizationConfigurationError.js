@@ -16,6 +16,16 @@ class PaymentAuthorizationConfigurationError extends Error {
     Error.captureStackTrace(this, PaymentAuthorizationConfigurationError);
   }
 
+  toResponse() {
+    return {
+      error: this.name,
+      message: this.message,
+      cardNetwork: this.cardNetwork,
+      selectedProfile: this.selectedProfile,
+      expectedProfile: this.expectedProfile,
+    };
+  }
+
   toLogFields() {
     return {
       error: this.name,

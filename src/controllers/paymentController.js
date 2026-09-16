@@ -59,9 +59,7 @@ function authorize(req, res) {
     if (error instanceof PaymentAuthorizationConfigurationError) {
       logAuthorizationFailure(req, error, error.httpStatus);
       return res.status(error.httpStatus).json({
-        error: error.name,
-        message: error.message,
-        cardNetwork: error.cardNetwork,
+        ...error.toResponse(),
         requestId: req.requestId,
       });
     }
