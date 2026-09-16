@@ -6,6 +6,7 @@ const { randomUUID } = require('crypto');
  * In-memory authorisation store. The demo service keeps no external database.
  */
 const store = new Map();
+const failures = {};
 
 const authorizationRepository = {
   save(record) {
@@ -36,6 +37,14 @@ const authorizationRepository = {
       counts[record.network] = (counts[record.network] || 0) + 1;
       return counts;
     }, {});
+  },
+
+  recordFailure(network) {
+    failures[network] = (failures[network] || 0) + 1;
+  },
+
+  failuresByNetwork() {
+    return { ...failures };
   },
 
   size() {
