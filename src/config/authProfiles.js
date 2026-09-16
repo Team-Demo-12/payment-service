@@ -42,6 +42,10 @@ const authProfiles = {
     return NETWORK_PROFILES[String(network || '').toLowerCase()] || DEFAULT_PROFILE;
   },
 
+  isSupported(network) {
+    return this.supportedNetworks().includes(String(network || '').toLowerCase());
+  },
+
   supportedNetworks() {
     return Object.keys(NETWORK_PROFILES);
   },
