@@ -13,7 +13,7 @@ function requestId(req, res, next) {
 
 function rateLimit(req, res, next) {
   const now = Date.now();
-  const key = req.ip || 'anonymous';
+  const key = `${req.ip || 'anonymous'}:${req.route ? req.route.path : req.path}`;
   const bucket = buckets.get(key) || { count: 0, resetAt: now + config.rateLimitWindowMs };
 
   if (now > bucket.resetAt) {
