@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/payments/authorize', paymentController.authorize);
 router.get('/payments/networks', paymentController.listNetworks);
+router.get('/payments/invoices/:invoiceId/authorizations', paymentController.listByInvoice);
 router.get('/payments/authorizations/:authorizationId', paymentController.getAuthorization);
 
 module.exports = router;

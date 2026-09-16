@@ -93,4 +93,12 @@ function listNetworks(req, res) {
   });
 }
 
-module.exports = { authorize, getAuthorization, listNetworks };
+function listByInvoice(req, res) {
+  const { authorizationRepository } = require('../repositories/authorizationRepository');
+  return res.json({
+    invoiceId: req.params.invoiceId,
+    authorizations: authorizationRepository.findByInvoice(req.params.invoiceId),
+  });
+}
+
+module.exports = { authorize, getAuthorization, listNetworks, listByInvoice };
