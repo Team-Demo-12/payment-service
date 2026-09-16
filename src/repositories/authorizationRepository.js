@@ -18,6 +18,11 @@ const authorizationRepository = {
     return saved;
   },
 
+  findByIdempotencyKey(idempotencyKey) {
+    if (!idempotencyKey) return null;
+    return [...store.values()].find((r) => r.idempotencyKey === idempotencyKey) || null;
+  },
+
   findById(authorizationId) {
     return store.get(authorizationId) || null;
   },
