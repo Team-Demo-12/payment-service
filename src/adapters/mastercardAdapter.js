@@ -23,6 +23,7 @@ function authorize(payment, profile) {
     network: 'mastercard',
     profileId: profile.id,
     captureMode: profile.captureMode,
+    installmentPlan: payment.installmentPlan || null,
     authorizationCode: `MC${String(payment.amountMinor).padStart(6, '0')}`,
     approved: true,
   };
