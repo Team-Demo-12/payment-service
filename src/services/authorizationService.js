@@ -23,6 +23,7 @@ function authorizePayment(payment) {
     invoiceId: payment.invoiceId,
     network: payment.network,
     profileId: result.profileId,
+    captureMode: result.captureMode,
     authorizationCode: result.authorizationCode,
     amountMinor: payment.amountMinor,
     currency: payment.currency,

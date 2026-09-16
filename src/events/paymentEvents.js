@@ -17,6 +17,8 @@ function emitPaymentSucceeded(record) {
     paymentId: record.paymentId,
     invoiceId: record.invoiceId,
     network: record.network,
+    profileId: record.profileId,
+    captureMode: record.captureMode || null,
     amountMinor: record.amountMinor,
     currency: record.currency,
   };
