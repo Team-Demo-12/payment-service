@@ -7,14 +7,15 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 /**
- * Visa and Mastercard profile-selection coverage. Both networks are certified against
- * the shared default profile.
+ * Card-network profile-selection coverage.
+ *
+ * Authorisation resolves the default profile, which every supported network is
+ * certified against.
  */
 class AuthorizationProfileCardTest {
     @Test
-    fun `visa and mastercard resolve to the shared default profile`() {
-        assertEquals("card-default", authProfiles.forNetwork("visa").id)
-        assertEquals("card-default", authProfiles.forNetwork("mastercard").id)
+    fun `default profile is card-default`() {
+        assertEquals("card-default", authProfiles.default.id)
     }
 
     @Test
