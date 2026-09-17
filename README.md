@@ -4,8 +4,8 @@ Beaconstone Payments. Resolves the card-network authorisation profile for a paym
 authorises it through the adapter for that network, then publishes `PaymentSucceeded` so
 Invoicing can mark the invoice paid.
 
-Upstream: `billing-service` calls this service to authorise an invoice payment.
-Downstream: `invoicing-service` consumes `PaymentSucceeded`.
+Kotlin / JDK 21. Upstream: `billing-service` calls this service to authorise an invoice
+payment. Downstream: `invoicing-service` consumes `PaymentSucceeded`.
 
 ## Authorisation profiles
 
@@ -28,6 +28,8 @@ resolves this; `authProfiles.default` returns the shared profile and is **not** 
 |---|---|---|
 | `POST` | `/payments/authorize` | Authorise a payment for an invoice |
 | `GET` | `/payments/authorizations/:authorizationId` | Read a stored authorisation |
+| `GET` | `/payments/networks` | List supported card networks |
+| `GET` | `/payments/invoices/:invoiceId/authorizations` | Authorisations for an invoice |
 | `GET` | `/health` | Liveness |
 | `GET` | `/ready` | Readiness |
 | `GET` | `/metrics` | Authorisation counts by network |
@@ -50,16 +52,16 @@ returns `500` with `PaymentAuthorizationConfigurationError`.
 ## Quick start
 
 ```bash
-npm install
-npm start
-npm test
+mvn test
+mvn -q -DskipTests package
+java -jar target/payment-service-4.17.3.jar
 ```
 
 ## Configuration
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `PORT` | `3000` | HTTP listen port |
+| `PORT` | `8080` | HTTP listen port |
 | `SERVICE_NAME` | `payment-service` | Emitted on every log line |
 | `RELEASE` | `payments-<package version>` | Release identifier in logs and telemetry. Set by the deployment; falls back to the package version locally. |
 | `API_KEY` | unset | When set, requires `x-api-key` |
@@ -69,12 +71,12 @@ npm test
 ## Architecture
 
 ```
-routes/paymentRoutes  ->  controllers/paymentController
-                            -> services/authorizationService
-                                 -> config/authProfiles     (profile selection)
-                                 -> adapters/{amex,visa,mastercard}  (profile validation)
-                                 -> repositories/authorizationRepository
-                                 -> events/paymentEvents    (PaymentSucceeded)
+http/HttpApp  ->  controllers/PaymentController
+                    -> services/AuthorizationService
+                         -> config/AuthProfiles          (profile selection)
+                         -> adapters/{Amex,Visa,Mastercard}  (profile validation)
+                         -> repositories/AuthorizationRepository
+                         -> events/PaymentEvents         (PaymentSucceeded)
 ```
 
 Authorisations are held in memory; there is no external database.
