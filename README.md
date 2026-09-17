@@ -54,7 +54,7 @@ returns `500` with `PaymentAuthorizationConfigurationError`.
 ```bash
 mvn test
 mvn -q -DskipTests package
-java -jar target/payment-service-4.18.0.jar
+java -jar target/payment-service-4.17.3.jar
 ```
 
 ## Configuration

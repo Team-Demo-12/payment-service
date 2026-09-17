@@ -6,7 +6,7 @@
 
   <groupId>com.beaconstone</groupId>
   <artifactId>payment-service</artifactId>
-  <version>4.18.0</version>
+  <version>4.17.3</version>
   <name>payment-service</name>
   <description>Beaconstone Payments — selects the card-network authorisation profile and processes payment authorisation.</description>
 
